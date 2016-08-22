@@ -1,0 +1,11 @@
+# Mark the commands below to be run as a batch
+batch
+
+# Add Postgres module
+module add --name=org.postgresql --resources=/opt/jboss/wildfly/modules/postgresql-9.4.1207.jar --dependencies=javax.api,javax.transaction.api
+
+# Add Postgres driver
+/subsystem=datasources/jdbc-driver=postgresql:add(driver-name=postgresql,driver-module-name=org.postgresql,driver-xa-datasource-class-name=org.postgresql.xa.PGXADataSource)
+
+# Execute the batch
+run-batch
